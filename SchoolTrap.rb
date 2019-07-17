@@ -1,7 +1,9 @@
 use_bpm 145
 
 
-#Temp Notes
+#ARP AND CHORD
+#ARP AND CHORD taken from a stock example, then expanded upon with some randomness and harmonic tension
+#ARP AND CHORD
 def sad_lfo
   (ring 0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8).tick
 end
@@ -13,7 +15,7 @@ live_loop :arp do
 end
 
 #BASS
-#BASS
+#BASS plays 3 simple patterns in a loop
 #BASS
 
 define :b0 do
@@ -30,18 +32,29 @@ define :b1 do
   sleep 4
 end
 
+define :b2 do
+  use_synth :tri
+  sleep 4
+  play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
+  sleep 1.5
+  play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
+  sleep 2.5
+end
+
 live_loop :bass1 do
   4.times do
     b0
   end
-  4.times do
+  3.times do
     b1
+  end
+  1.times do
+    b2
   end
 end
 
-
 #KICKS
-#KICKS
+#KICKS has a 2nd accent loop that randomly plays with a 1 in 3 chance
 #KICKS
 def kick1(v)
   sample :bd_haus, amp: v, rate: 1.0
@@ -74,7 +87,7 @@ live_loop :kicks2 do
 end
 
 #SNARES
-#SNARES
+#SNARES defines multiple 8-beat loops as functions and then plays a repeating pattern of them
 #SNARES
 def snar(v)
   sample :drum_snare_hard, rate: 2, amp: v, attack: 0, decay: 0.3, sustain: 0, release: 0
@@ -133,8 +146,8 @@ live_loop :snares1 do
 end
 
 #HI HATS
-#HI HATS
-#HI HATS
+#HI HATS plays 1 of 4 patterns on a random basis with a straight 8th note pattern being the most likely.
+#HI HATS has a rough triplet pattern and a 1/32 note pattern rith randomized pitch (rate) for a glitch effect
 def hat(v,d,r)
   sample :drum_cymbal_closed, rate: r, amp: v, attack: 0, decay: d, sustain: 0, release: 0
 end
