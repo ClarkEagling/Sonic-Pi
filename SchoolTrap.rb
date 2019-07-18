@@ -25,6 +25,13 @@ define :b0 do
   sleep 4
 end
 
+define :b3 do
+  use_synth :tri
+  sleep 3
+  play 28, amp: 3, attack: 0, sustain: 0.4, release: 1.5
+  sleep 5
+end
+
 define :b1 do
   use_synth :tri
   sleep 4
@@ -42,8 +49,12 @@ define :b2 do
 end
 
 live_loop :bass1 do
-  4.times do
+  sleep 64
+  3.times do
     b0
+  end
+  1.times do
+    b3
   end
   3.times do
     b1
@@ -91,6 +102,7 @@ end
 #SNARES
 def snar(v)
   sample :drum_snare_hard, rate: 2, amp: v, attack: 0, decay: 0.3, sustain: 0, release: 0
+  sample :drum_snare_soft, rate: [1.3,1.4,1.5].choose, amp: v
 end
 
 define :s0 do
@@ -141,8 +153,8 @@ define :s3 do
   end
 end
 
-live_loop :snares1 do
-  play [s0,s0,s1,s2,s0,s0,s1,s3]
+live_loop :snares1, delay: 32 do
+  play [s0,s0,s1,s3,s0,s0,s1,s2]
 end
 
 #HI HATS
@@ -152,7 +164,7 @@ def hat(v,d,r)
   sample :drum_cymbal_closed, rate: r, amp: v, attack: 0, decay: d, sustain: 0, release: 0
 end
 
-live_loop :hats do
+live_loop :hats, delay: 64 do
   trips = [0,0,1,2,3].choose
   case trips
   when 0
@@ -178,10 +190,25 @@ live_loop :hats do
     2.times do
       hat(1.3,0.03,1)
       sleep 0.32
-      hat(1.2,0.01,1)
+      hat(1.4,0.01,1)
       sleep 0.32
-      hat(1.2,0.02,1)
+      hat(1.3,0.02,1)
       sleep 0.36
     end
+  end
+end
+
+#WEIRD ROLL
+#WEIRD ROLL
+#WEIRD ROLL
+with_fx :echo do
+  live_loop :weirdroll do
+    sleep 144
+    sample :drum_roll, rate: 3
+    sleep 2
+    sample :drum_roll, rate: 3
+    sleep 2
+    sample :drum_roll, rate: 3
+    sleep 12
   end
 end
