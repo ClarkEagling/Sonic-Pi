@@ -47,7 +47,7 @@ with_fx :reverb, room:1, pre_amp:2 do
           sleep 1
         end
         
-        8.times do
+        12.times do
           use_synth :pluck
           
           if one_in(2)
@@ -86,28 +86,29 @@ with_fx :reverb, room:1, pre_amp:2 do
         end
         
         8.times do
-          use_synth :pluck
+          use_synth :blade
+          a=1.4
           
           if one_in(2)
             sleep 0.5 if one_in(2)
-            play choose([:Ds6, :Fs6, :Gs6, :F6]), amp: 1.6, pan: rrand(-0.5,0.5)
+            play choose([:Ds6, :Fs6, :Gs6, :F6]), amp: a, pan: rrand(-0.5,0.5)
             sleep 0.165
-            play choose([:Ds6, :Fs6, :Gs6, :F6]), amp: 1.6, pan: rrand(-0.5,0.5)
+            play choose([:Ds6, :Fs6, :Gs6, :F6]), amp: a, pan: rrand(-0.5,0.5)
             sleep 0.165
-            play choose([:Ds6, :Fs6, :Gs5, :F5]), amp: 1.6, pan: rrand(-0.5,0.5)
+            play choose([:Ds6, :Fs6, :Gs5, :F5]), amp: a, pan: rrand(-0.5,0.5)
             sleep 0.33
-            play choose([:Ds5, :Fs5, :Gs6, :F6]), amp: 1.6, pan: rrand(-0.5,0.5) if one_in(2)
+            play choose([:Ds5, :Fs5, :Gs6, :F6]), amp: a, pan: rrand(-0.5,0.5) if one_in(2)
             sleep 0.34
             
           else
             sleep 0.5 if one_in(2)
-            play choose([:F5, :As6, :C6, :Cs6]), amp: 1.6, pan: rrand(-0.5,0.5)
+            play choose([:F5, :As6, :C6, :Cs6]), amp: a, pan: rrand(-0.5,0.5)
             sleep 0.33
-            play choose([:F5, :As6, :C5, :Cs5]), amp: 1.6, pan: rrand(-0.5,0.5)
+            play choose([:F5, :As6, :C5, :Cs5]), amp: a, pan: rrand(-0.5,0.5)
             sleep 0.165
-            play choose([:F5, :As6, :C6, :Cs6]), amp: 1.6, pan: rrand(-0.5,0.5)
+            play choose([:F5, :As6, :C6, :Cs6]), amp: a, pan: rrand(-0.5,0.5)
             sleep 0.165
-            play choose([:F6, :As6, :C5, :Cs5]), amp: 1.6, pan: rrand(-0.5,0.5) if one_in(2)
+            play choose([:F6, :As6, :C5, :Cs5]), amp: a, pan: rrand(-0.5,0.5) if one_in(2)
             sleep 0.34
           end
           sleep [1,2,4].choose

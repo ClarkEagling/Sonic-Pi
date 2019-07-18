@@ -3,7 +3,7 @@
 #SLEEPY ARPS
 
 with_fx :hpf, cutoff: 70 do
-  live_loop :blag do
+  live_loop :blag, delay:16 do
     with_synth :dsaw do
       s = play 60, amp: 0.8, release: 5, cutoff: rrand(1,100), note_slide: 0.1
       sleep 0.5
@@ -16,7 +16,8 @@ with_fx :hpf, cutoff: 70 do
     end
   end
   
-  live_loop :blag2, delay:16 do
+  live_loop :blag2, delay:32 do
+    sync :blag
     with_synth :dpulse do
       if one_in(2)
         s = play 60, amp: 0.6, release: 5, cutoff: rrand(1,90), note_slide: 0.1
@@ -53,9 +54,10 @@ end
 #KICKS
 
 live_loop :kickerz do
+  sync :blag
   sample :bd_fat, amp: 2.5
   sample :bd_boom, rate: 0.9
-  sleep [0.5,1].choose
+  sleep [0.5,0.75].choose
   sample :bd_fat, amp: 2
   sleep 0.5
 end
