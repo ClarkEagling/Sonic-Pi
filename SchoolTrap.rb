@@ -52,10 +52,10 @@ end
 
 live_loop :bass1, delay: 64 do
   play bassline
-  sleep 80
+  sleep 96
   play bassline
   play bassline
-  sleep 112
+  sleep 128
 end
 
 
