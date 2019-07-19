@@ -11,7 +11,7 @@ end
 live_loop :arp do
   use_synth [:dsaw,:square].choose
   play (scale [:e2,:e3].choose, :minor_pentatonic).tick, cutoff: rrand(20,100), amp: rrand(0,0.7), release: rrand(0.1,1)
-  play (scale :e3, :minor_pentatonic), amp: rrand(0.1,1), release: rrand(0.1,1), cutoff: rrand(20,100)
+  play (scale [:e4,:e3,:e3].choose, :minor_pentatonic), amp: rrand(0.1,1), release: rrand(0.1,1), cutoff: rrand(20,100)
   sleep 0.5
 end
 
@@ -52,10 +52,10 @@ end
 
 live_loop :bass1, delay: 64 do
   play bassline
-  sleep 96
+  sleep 80
   play bassline
   play bassline
-  sleep 128
+  sleep 112
 end
 
 
@@ -66,9 +66,6 @@ end
 def kick1(v)
   sample :bd_haus, amp: v, rate: 1.0
 end
-def kick2(v)
-  sample :bd_mehackit, amp: v, rate: 2.0
-end
 
 live_loop :kicks1, delay: 16 do
   kick1(2)
@@ -78,6 +75,7 @@ live_loop :kicks1, delay: 16 do
 end
 
 live_loop :kicks2, delay: 16 do
+  sync :kicks1
   k = [0,0,1].choose
   case k
   when 0
