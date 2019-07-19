@@ -9,60 +9,56 @@ def sad_lfo
 end
 
 live_loop :arp do
-  play (scale :e3, :minor_pentatonic).tick, amp: rrand(0,0.7), release: rrand(0.1,1)
-  play (scale :e3, :minor_pentatonic).reverse, amp: rrand(0.1,1), release: rrand(0.1,1)
+  use_synth [:dsaw,:square].choose
+  play (scale [:e2,:e3].choose, :minor_pentatonic).tick, cutoff: rrand(20,100), amp: rrand(0,0.7), release: rrand(0.1,1)
+  play (scale :e3, :minor_pentatonic), amp: rrand(0.1,1), release: rrand(0.1,1), cutoff: rrand(20,100)
   sleep 0.5
 end
 
 #BASS
 #BASS plays 3 simple patterns in a loop
 #BASS
-
-define :b0 do
-  use_synth :tri
-  sleep 4
-  play 28, amp: 3, attack: 0, sustain: 0.4, release: 1
-  sleep 4
-end
-
-define :b3 do
-  use_synth :tri
-  sleep 3
-  play 28, amp: 3, attack: 0, sustain: 0.4, release: 1.5
-  sleep 5
-end
-
-define :b1 do
-  use_synth :tri
-  sleep 4
-  play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
-  sleep 4
-end
-
-define :b2 do
-  use_synth :tri
-  sleep 4
-  play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
-  sleep 1.5
-  play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
-  sleep 2.5
-end
-
-live_loop :bass1 do
-  sleep 64
+define :bassline do
   3.times do
-    b0
+    use_synth :tri
+    sleep 4
+    play 28, amp: 3, attack: 0, sustain: 0.4, release: 1
+    sleep 4
   end
   1.times do
-    b3
+    use_synth :tri
+    sleep 3
+    play 28, amp: 3, attack: 0, sustain: 0.4, release: 1.5
+    sleep 5
   end
+  
   3.times do
-    b1
+    use_synth :tri
+    sleep 4
+    play 24, amp: 3, attack: 0, sustain: 0.4, release: 1.5
+    sleep 4
   end
+  
   1.times do
-    b2
+    use_synth :tri
+    sleep 4
+    play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
+    sleep 1.5
+    play 24, amp: 3, attack: 0, sustain: 0.4, release: 1.5
+    sleep 2.5
   end
 end
+
+
+live_loop :bass1, delay: 64 do
+  play bassline
+  sleep 96
+  play bassline
+  play bassline
+  sleep 128
+end
+
+
 
 #KICKS
 #KICKS has a 2nd accent loop that randomly plays with a 1 in 3 chance
@@ -74,14 +70,14 @@ def kick2(v)
   sample :bd_mehackit, amp: v, rate: 2.0
 end
 
-live_loop :kicks1 do
+live_loop :kicks1, delay: 16 do
   kick1(2)
   sleep 3
   kick1(2)
   sleep 5
 end
 
-live_loop :kicks2 do
+live_loop :kicks2, delay: 16 do
   k = [0,0,1].choose
   case k
   when 0
@@ -201,14 +197,14 @@ end
 #WEIRD ROLL
 #WEIRD ROLL
 #WEIRD ROLL
-with_fx :echo do
-  live_loop :weirdroll do
-    sleep 144
-    sample :drum_roll, rate: 3
-    sleep 2
-    sample :drum_roll, rate: 3
-    sleep 2
-    sample :drum_roll, rate: 3
-    sleep 12
-  end
+#with_fx :echo do
+live_loop :weirdroll do
+  sleep 144
+  sample :drum_roll, rate: 3
+  sleep 2
+  sample :drum_roll, rate: 3
+  sleep 2
+  sample :drum_roll, rate: 3
+  sleep 12
 end
+#end
