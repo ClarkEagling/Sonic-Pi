@@ -1,7 +1,7 @@
 # Welcome to Sonic Pi v3.1
 #MIDI TRIGGERED PAD WITH RANDOM VOICES
-#MIDI TRIGGERED PAD WITH RANDOM VOICES
-#MIDI TRIGGERED PAD WITH RANDOM VOICES
+#MIDI TRIGGERED PAD WITH RANDOM VOICES Sounds nice when trilled on 
+#MIDI TRIGGERED PAD WITH RANDOM VOICES d,f,a,b,  then b,c, then g,a,c,e inverted chord
 use_bpm 60
 with_fx :reverb, room:0.5, pre_amp:1.5 do
   live_loop :midi_piano do
