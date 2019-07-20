@@ -8,12 +8,20 @@ def sad_lfo
   (ring 0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8).tick
 end
 
-live_loop :arp do
-  use_synth [:dsaw,:square].choose
-  play (scale [:e2,:e3].choose, :minor_pentatonic).tick, cutoff: rrand(20,100), amp: rrand(0,0.7), release: rrand(0.1,1)
-  play (scale [:e4,:e3,:e3].choose, :minor_pentatonic), amp: rrand(0.1,1), release: rrand(0.1,1), cutoff: rrand(20,100)
-  sleep 0.5
+with_fx :reverb, room: 0.7, pre_amp: 1.3 do
+  #
+  with_fx :hpf, cutoff: 56 do
+    live_loop :arp do
+      use_synth [:dsaw,:square].choose
+      play (scale [:e2,:e3].choose, :minor_pentatonic).tick, cutoff: rrand(20,100), amp: rrand(0,0.7), release: rrand(0.1,1)
+      play (scale [:e4,:e3,:e3].choose, :minor_pentatonic), amp: rrand(0.1,1), release: rrand(0.1,1), cutoff: rrand(20,100)
+      sleep 0.5
+    end
+    # end
+  end
 end
+
+
 
 #BASS
 #BASS plays 3 simple patterns in a loop
@@ -49,14 +57,16 @@ define :bassline do
   end
 end
 
-
-live_loop :bass1, delay: 64 do
-  play bassline
-  sleep 96
-  play bassline
-  play bassline
-  sleep 128
+with_fx :distortion, pre_amp:1.7, distort:0.6 do
+  live_loop :bass1, delay: 64 do
+    play bassline
+    sleep 96
+    play bassline
+    play bassline
+    sleep 128
+  end
 end
+
 
 
 
@@ -196,13 +206,15 @@ end
 #WEIRD ROLL
 #WEIRD ROLL
 #with_fx :echo do
-live_loop :weirdroll do
-  sleep 144
-  sample :drum_roll, rate: 3
-  sleep 2
-  sample :drum_roll, rate: 3
-  sleep 2
-  sample :drum_roll, rate: 3
-  sleep 12
+with_fx :ixi_techno, phase:32, phase_offset: 0.6, cutoff_min:70, cutoff_max:129 do
+  live_loop :weirdroll do
+    sleep 144
+    sample :drum_roll, rate: 3
+    sleep 2
+    sample :drum_roll, rate: 3
+    sleep 2
+    sample :drum_roll, rate: 3
+    sleep 12
+  end
 end
 #end
