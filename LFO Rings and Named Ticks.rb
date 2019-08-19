@@ -21,14 +21,20 @@ with_fx :bitcrusher, bits:8, pre_amp:1.5 do
     sample :drum_cymbal_closed, rate: sad_lfo, amp: sad_lfo2, attack: 0, decay: sad_lfo3, sustain: 0, release: 0
     sleep 0.25
   end
-  live_loop :LFOhat2, delay:32 do
-    sleep 0.125
-    sample :drum_cymbal_closed, rate: sad_lfo2, amp: sad_lfo, attack: 0, decay: sad_lfo3, sustain: 0, release: 0
-    sleep 0.125
+  
+  live_loop :LFOhat2 do
+    32.times do
+      sleep 1
+    end
+    128.times do
+      sleep 0.125
+      sample :drum_cymbal_closed, rate: sad_lfo2, amp: sad_lfo, attack: 0, decay: sad_lfo3, sustain: 0, release: 0
+      sleep 0.125
+    end
   end
   
   live_loop :kick do
-    sample :bd_haus, amp: (ring 0.5, 1).tick
+    sample :bd_haus, amp: (ring 0.5, 0.75, 1).tick
     sleep 0.5
   end
   
@@ -59,17 +65,22 @@ end
 #THE BASS
 #THE BASS
 define :bassline do
-  2.times do
+  3.times do
     use_synth :dsaw
     sleep 6
     play 30, amp: 3, attack: 0, sustain: 0.4, release: 1.5
     sleep 8
     play 30, amp: 3, attack: 0, sustain: 0.4, release: 1.5
-    sleep 8
+    sleep 2
+  end
+  
+  2.times do
+    use_synth :dsaw
+    sleep 4
+    play 30, amp: 3, attack: 0, sustain: 0.4, release: 1
+    sleep 1.5
     play 30, amp: 3, attack: 0, sustain: 0.4, release: 1.5
-    sleep 6
-    play 30, amp: 3, attack: 0, sustain: 0.4, release: 1.5
-    sleep 12
+    sleep 2.5
   end
   
   3.times do
@@ -82,7 +93,7 @@ define :bassline do
   end
   
   2.times do
-    use_synth :dtri
+    use_synth :dpulse
     sleep 4
     play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
     sleep 1.5
