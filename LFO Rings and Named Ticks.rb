@@ -77,9 +77,9 @@ define :bassline do
   2.times do
     use_synth :dsaw
     sleep 4
-    play 30, amp: 3, attack: 0, sustain: 0.4, release: 1
+    play 28, amp: 3, attack: 0, sustain: 0.4, release: 1
     sleep 1.5
-    play 30, amp: 3, attack: 0, sustain: 0.4, release: 1.5
+    play 28, amp: 3, attack: 0, sustain: 0.4, release: 1.5
     sleep 2.5
   end
   
@@ -93,11 +93,11 @@ define :bassline do
   end
   
   2.times do
-    use_synth :dpulse
+    use_synth :dtri
     sleep 4
     play 24, amp: 3, attack: 0, sustain: 0.4, release: 1
     sleep 1.5
-    play 24, amp: 3, attack: 0, sustain: 0.4, release: 1.5
+    play 30, amp: 3, attack: 0, sustain: 0.4, release: 1.5
     sleep 2.5
   end
 end
@@ -108,6 +108,21 @@ with_fx :distortion, pre_amp:1.7, distort:0.6, amp: 0.2 do
       play bassline
       sleep 32
       
+    end
+  end
+end
+
+#A pad that I had to compromise improvise due to a glitch
+#A pad that I had to compromise improvise due to a glitch
+#A pad that I had to compromise improvise due to a glitch. if anyone can tell me why an uncalled 64 note is playing I'd love to know
+with_fx :krush, amp: 0.27 do
+  live_loop :thic_pad, delay:16 do
+    256.times do
+      play synth [:dsaw, :dpulse, :blade].choose, amp:sad_lfo3, cutoff: rrand(80,120), note: [64,48,88,76,36,100,112,124].choose, attack: 0.3, release: 3, pan: [-0.5,-0.75,-0.33,-0.25,0.5,0.75,0.33,0.25].choose
+      sleep 0.25
+    end
+    32.times do
+      sleep 1
     end
   end
 end
