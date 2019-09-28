@@ -145,13 +145,24 @@ end
 #The Sad Bit
 #The Sad Bit
 
-with_fx :reverb, room: 1 do
+with_fx :reverb, room: 1, amp: 0.8 do
   live_loop :melody do
     use_synth :piano
     2.times do
       play_pattern_timed [:e3, :b3, :g3, :d4,:e3, :b3, :g3, :d4, :f3], [8,4,4,16,8,4,4,12,4], attack: 1
     end
     sleep 96
+  end
+end
+
+with_fx :reverb, room: 1, amp:0.25 do
+  live_loop :melody2 do
+    use_synth :dtri
+    2.times do
+      sleep 0.3
+      play_pattern_timed [:e4, :b4, :c5, :d5,:e4, :b4, :e5, :d5, :f4], [8,4,4,16,8,4,4,12,4], decay: 0.2, sustain: 0.2, release: 1
+    end
+    sleep 95.7
   end
 end
 
