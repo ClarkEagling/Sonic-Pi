@@ -24,9 +24,9 @@ live_loop :kick do
   sleep 32
   sample :bd_haus, rate: 1
   sleep 16
-  sample :bd_haus, rate: 1
+  sample :bd_haus, rate: 1.5
   sleep 6
-  sample :bd_haus, rate: 0.8
+  sample :bd_haus, rate: 1.2
   sleep 4
   sample :bd_haus, rate: 0.8
   sleep 6
@@ -97,14 +97,18 @@ live_loop :bladers do
   4.times do
     with_fx :hpf, cutoff: 88 do
       with_fx :echo, mix: 0.5, phase: 6, decay:16 do
-        with_fx :reverb, room: 0.8 do
-          use_synth :blade
-          use_synth_defaults attack: rrand(8,16), sustain: 2, decay: rrand(2,6), release: rrand(2,6), vibrato_rate: rrand(1,12), vibrato_depth: rrand(0.15,1), amp: 0.5
-          sleep 44
-          play :a4
-          sleep 2
-          play :e5
-          sleep 18
+        with_fx :slicer, phase: 4 do
+          with_fx :panslicer, wave: 2, phase: 12 do
+            with_fx :reverb, room: 0.8 do
+              use_synth :blade
+              use_synth_defaults attack: rrand(8,16), sustain: 2, decay: rrand(2,6), release: rrand(2,6), vibrato_rate: rrand(1,12), vibrato_depth: rrand(0.15,1), amp: 0.5
+              sleep 44
+              play :a4
+              sleep 2
+              play :e5
+              sleep 22
+            end
+          end
         end
       end
     end
