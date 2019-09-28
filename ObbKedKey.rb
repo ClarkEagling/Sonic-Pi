@@ -74,7 +74,7 @@ live_loop :bass, delay:256 do
     cb = (line 30, 130, steps: 32).tick
     cd = (line -4, 4, steps: 16).tick
     cdd = (line 3, -2, steps: 10).tick
-    use_synth_defaults cutoff: cb, depth: cd, divisor: cdd
+    use_synth_defaults cutoff: cb, decay: 0.5, amp: 0.75, depth: cd, divisor: cdd
     use_synth :fm
     play :c3
     sleep 5
