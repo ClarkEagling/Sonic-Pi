@@ -120,7 +120,7 @@ live_loop :wtd do
     sleep 512
   end
   32.times do
-    use_sample_defaults amp: 0.5
+    use_sample_defaults amp: 0.3
     sample :elec_pop
     sleep 1
     sample :elec_beep
