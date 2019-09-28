@@ -94,7 +94,7 @@ live_loop :bladers do
   2.times do
     sleep 256
   end
-  4.times do
+  6.times do
     with_fx :hpf, cutoff: 88 do
       with_fx :echo, mix: 0.5, phase: 6, decay:16 do
         with_fx :slicer, phase: 4 do
@@ -112,5 +112,26 @@ live_loop :bladers do
         end
       end
     end
+  end
+end
+
+live_loop :wtd do
+  1.times do
+    sleep 512
+  end
+  32.times do
+    use_sample_defaults amp: 0.5
+    sample :elec_pop
+    sleep 1
+    sample :elec_beep
+    sleep 1
+    sample :elec_blip
+    sleep 1
+    sample :elec_flip
+    sleep 1
+    sample :elec_twip, rate: 1.5
+    sleep 1
+    sample :elec_plip
+    sleep 1
   end
 end
