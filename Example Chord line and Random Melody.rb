@@ -10,7 +10,7 @@ c = chords[0] # take the first chord of the ring and save it to a variable
 
 with_fx :reverb, mix:0.6, amp: 0.7 do
   with_fx :slicer, mix:0.5 do
-    live_loop :melody, delay:4 do
+    live_loop :melody, delay:20 do
       use_synth :blade
       r = [0.25, 0.25, 0.5, 1,2,3].choose #This is an array of different sleep and release times. the values are used for both.
       play c.choose, attack: 0, release: r #THIS LINE chooses a note in the current chord to play
