@@ -8,7 +8,6 @@ chords = [(chord :F, :major7), (chord :F, :major7), (chord :A, :minor7), (chord 
 c = chords[0] # take the first chord of the ring and save it to a variable
 # this is going to be used in all the live_loops. It will be ticked by the :bass loop
 
-
 with_fx :reverb, mix:0.6, amp: 0.7 do
   with_fx :slicer, mix:0.5 do
     live_loop :melody, delay:4 do
@@ -31,7 +30,6 @@ with_fx :echo, phase:0.5, mix:0.3 do
   end
 end
 
-
 live_loop :bass do
   use_synth :fm
   use_octave -2
@@ -52,7 +50,7 @@ end
 #THE DRUM BEAT
 
 live_loop :kicker, delay: 36 do
-  use_bpm 400
+  use_bpm 400 #I speed up the BPM x4 to make sleep time calculations easier
   sample :drum_splash_hard, sustain: 0.1, decay:0.1, amp: 0.6
   sample :bd_haus, amp: 1.5
   sleep 6
@@ -67,12 +65,12 @@ end
 
 use_random_seed 50
 live_loop :snare, delay: 68 do
-  use_bpm 400
+  use_bpm 400 #I speed up the BPM x4 to make sleep time calculations easier
   sleep 4
   sample :sn_dolf, rate: 1.2
   sleep 8
   sample :sn_dolf, rate: 1.2
   sleep 3
-  sample :sn_dolf, rate: 1.2 if one_in(3) #this snare only has a 1 in 3 odds of playing
+  sample :sn_dolf, rate: 1.2 if one_in(4) #this snare only has a 1 in 4 odds of playing
   sleep 1
 end
