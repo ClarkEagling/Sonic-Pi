@@ -1,4 +1,4 @@
-use_bpm 665
+use_bpm 650
 
 with_fx :reverb, mix: 0.6 do
   live_loop :rightHand do
@@ -33,7 +33,7 @@ with_fx :reverb, mix: 0.6 do
     use_synth :piano
     sleep 152
     play_pattern_timed [:e5,:e5,:e5],[2,2,2]
-    sleep 152
+    sleep 98
   end
 end
 
