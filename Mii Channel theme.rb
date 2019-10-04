@@ -1,4 +1,4 @@
-use_bpm 666
+use_bpm 665
 
 with_fx :reverb, mix: 0.6 do
   live_loop :rightHand do
