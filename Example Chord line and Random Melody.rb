@@ -23,7 +23,7 @@ with_fx :echo, phase:0.5, mix:0.3 do
   with_fx :wobble do #Credit to J. Daniels for finding the Wobble effect
     live_loop :keys, delay:4 do
       use_synth :piano
-      use_synth_defaults amp: 1.2, pan: rrand(-0.5,0.5)
+      use_synth_defaults amp: 1.2, pan: rrand(-0.5,0.5) #this pans the sound randomly between speakers
       play c #THIS LINE plays the current chord in the array
       sleep 1
     end
@@ -51,10 +51,10 @@ end
 
 live_loop :kicker, delay: 36 do
   use_bpm 400 #I speed up the BPM x4 to make sleep time calculations easier
-  sample :drum_splash_hard, sustain: 0.1, decay:0.1, amp: 0.6
+  sample :drum_splash_hard, sustain: 0.1, decay:0.1, amp: 0.6, pan: -0.5
   sample :bd_haus, amp: 1.5
   sleep 6
-  sample :drum_splash_hard, sustain: 0.15, decay:0.1, amp: 0.6
+  sample :drum_splash_hard, sustain: 0.15, decay:0.1, amp: 0.6, pan: 0.5
   sample :bd_haus, amp: 1.5
   sleep 4
   sample :bd_haus
@@ -71,6 +71,9 @@ live_loop :snare, delay: 68 do
   sleep 8
   sample :sn_dolf, rate: 1.2
   sleep 3
-  sample :sn_dolf, rate: 1.2 if one_in(4) #this snare only has a 1 in 4 odds of playing
+  if one_in(4)
+    sample :sn_dolf, rate: 1.3  #this snare only has a 1 in 4 odds of playing
+    sample :sn_dolf, rate: -2, amp: 0.6 #this snare only has a 1 in 4 odds of playing
+  end
   sleep 1
 end
