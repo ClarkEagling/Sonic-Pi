@@ -77,3 +77,8 @@ live_loop :snare, delay: 68 do
   end
   sleep 1
 end
+
+live_loop :amenLoop, delay: 100 do
+  sample :loop_amen, beat_stretch: 4, amp: 0.5, pan: rrand(-0.8,0.8) #random pan, beat stretch ... this was lazy but it works
+  sleep 4
+end
