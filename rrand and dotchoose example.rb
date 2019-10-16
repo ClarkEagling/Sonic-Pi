@@ -3,9 +3,16 @@ use_bpm 300
 with_fx :reverb, room: 1, mix: 1 do
   #.CHOOSE EXAMPLE -- this chooses from a list of notes and synths
   live_loop :notes do
-    use_synth [:blade, :piano, :fm, :dsaw].choose
-    play [:c3, :c4, :e3, :e4, :g3, :g4, :b4].choose, attack: rrand(0,3)
-    sleep rrand(0.1,3)
+    64.times do
+      use_synth [:blade, :piano, :fm, :dsaw].choose
+      play [:c3, :c4, :e3, :e4, :g3, :g4, :b4].choose, attack: rrand(0,3)
+      sleep rrand(0.1,3)
+    end
+    64.times do
+      use_synth [:blade, :piano, :fm, :dsaw].choose
+      play [:f3, :f4, :a3, :a4, :c3, :c4, :e4].choose, attack: rrand(0,3)
+      sleep rrand(0.1,3)
+    end
   end
 end
 
