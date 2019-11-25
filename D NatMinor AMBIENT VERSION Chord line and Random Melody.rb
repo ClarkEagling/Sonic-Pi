@@ -12,7 +12,7 @@ c = chords[0] # take the first chord of the ring and save it to a variable
 #this gets the melody to stop and start on beat with the song
 live_loop :killMelody do
   set :continueplay,1
-  sleep 198
+  sleep 156
   set :continueplay,0
   sleep 64
 end
