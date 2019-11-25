@@ -9,13 +9,21 @@ chords = [(chord :d, :minor7), (chord :G, :minor7), (chord :F, :major7), (chord 
 c = chords[0] # take the first chord of the ring and save it to a variable
 # this is going to be used in all the live_loops. It will be .ticked by the :bass loop
 
+#this gets the melody to stop and start on beat with the song
+live_loop :killMelody do
+  set :continueplay,1
+  sleep 198
+  set :continueplay,0
+  sleep 64
+end
+
 with_fx :reverb, mix:0.8, room:1, amp: 1 do
   with_fx :slicer, mix:0.5 do
     live_loop :melody, delay:20 do
       use_synth :blade
       use_synth_defaults attack: 2
       r = [0.25, 0.25, 0.5, 1,2,3].choose #This is an array of different sleep and release times. the values are used for both.
-      play c.choose, attack: 0, release: r #THIS LINE chooses a note in the current chord to play
+      play c.choose, attack: 0, release: r if get(:continueplay)==1 #THIS LINE chooses a note in the current chord to play
       sleep r
     end
   end
