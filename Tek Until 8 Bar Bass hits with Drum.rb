@@ -210,13 +210,10 @@ define :arpMaker do
       sleep 1
     end
   end
-  
-  
   1.times do
     sleep 128
   end
 end
-
 
 with_fx :reverb, room: 0.1, mix: 0.7 do
   with_fx :distortion, amp: 0.4  do
@@ -226,5 +223,21 @@ with_fx :reverb, room: 0.1, mix: 0.7 do
   end
 end
 
+live_loop :perc_4, delay: 384 do
+  #this is a 4th percussion element that plays rapid hi pitched samples that fade in and out
+  ampLfo = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1].ring
+  rat = 3
+  sus = 0.01
+  sam = [:elec_bong, :elec_chime, :elec_twang, :elec_wood, :elec_pop, :elec_beep, :elec_blip, :elec_triangle,
+         :drum_cymbal_soft, :drum_splash_hard, :drum_splash_soft, :drum_cymbal_open, :drum_cymbal_closed,
+         :drum_cymbal_pedal, :drum_cymbal_hard, :perc_snap, :elec_flip]
+  128.times do
+    sample sam.choose, rate: rat, sustain: sus, amp: ampLfo.tick
+    sleep 1
+  end
+  1.times do
+    sleep 128
+  end
+end
 
 #well livestreaming is too much for this ol' computer, sound glitching out, thanks for joining me on this boring journey
