@@ -79,7 +79,12 @@ end
 
 
 live_loop :kickPlayer do
-  kickMaker
+  4.times do
+    kickMaker
+  end
+  1.times do
+    sleep 64
+  end
 end
 
 
@@ -231,6 +236,8 @@ live_loop :perc_4, delay: 384 do
   sam = [:elec_bong, :elec_chime, :elec_twang, :elec_wood, :elec_pop, :elec_beep, :elec_blip, :elec_triangle,
          :drum_cymbal_soft, :drum_splash_hard, :drum_splash_soft, :drum_cymbal_open, :drum_cymbal_closed,
          :drum_cymbal_pedal, :drum_cymbal_hard, :perc_snap, :elec_flip]
+  sam1 = sam.choose
+  sam2 = sam.choose
   128.times do
     sample sam.choose, rate: rat, sustain: sus, amp: ampLfo.tick
     sleep 1
@@ -238,6 +245,19 @@ live_loop :perc_4, delay: 384 do
   1.times do
     sleep 128
   end
+  64.times do
+    sample sam1, rate: rat, sustain: sus-0.006, amp: ampLfo.tick
+    sleep 1
+    sample sam2, rate: rat, sustain: sus-0.006, amp: ampLfo.tick
+    sleep 1
+  end
+  1.times do
+    sleep 128
+  end
 end
 
-#well livestreaming is too much for this ol' computer, sound glitching out, thanks for joining me on this boring journey
+#this is one of the first times i've created genuinely original systems on my own in code. i've stolen techniques and modified or repurposed em but never really felt like i was figuring something brand new out on my own. well, this "come up with a new riff every 4 or 8 bars" is all mine. i'm sure there's a more elegant way of doing it instead of assigning values to variables from an array and then using those variables in a 2nd array, but this works just fine.
+#up next is taking all the synths and samples and sets of notes and sets of timings and turning those into global variables so i can switch them out and make different sounding patches without having to totally rewrite the systems.
+#up next is also a better system for randomizing the FX and the mix in a controlled fashion.
+#i gotta give thanks to William Fields whose 24-hour FieldsOS project showed me that algorhytmic music could be a lot better, and could do a lot more shapeshifting than I thought it could. It just takes more robust systems and more "pre-production" and curation of the sound.
+#now I realize this isn't coming close to FieldsOS in terms of variety of sound/feel, but, to give myself credit, this is after a few hours spread out over 2 days and I'm approaching the challenge using very different tools. Maybe a control surface sending OSC messages is next?
