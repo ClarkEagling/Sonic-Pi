@@ -1,6 +1,6 @@
 #Global Variables for instruments and note arrays can be created and accessed with "set" and "get"
 
-use_bpm 400
+use_bpm 500
 use_random_seed 2099
 
 define :snareMaker do
