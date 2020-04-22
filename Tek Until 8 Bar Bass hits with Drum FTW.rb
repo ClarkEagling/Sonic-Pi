@@ -3,6 +3,11 @@
 use_bpm 500
 use_random_seed 2099
 
+
+#Snare
+#Snare
+#Snare
+
 define :snareMaker do
   a=[0,0.7,1]
   b=a.choose
@@ -27,6 +32,11 @@ end
 live_loop :snarePlayer do
   snareMaker
 end
+
+#Kick and Bassline
+#Kick and Bassline
+#Kick and Bassline
+
 
 define :kickMaker do
   a=[4,8,2]
@@ -91,10 +101,10 @@ live_loop :kickPlayer do
 end
 
 
-
-
-#HIGHER CHORDS
-#chords as variables, then array of variables,then choose 'em
+#Piano CHORDS
+#Piano CHORDS
+#Piano CHORDS
+#name chords as variables, then make an array of all the variables,then choose 'em
 define :chordMaker do
   
   #chord arrays
@@ -154,10 +164,20 @@ end
 with_fx :hpf, pre_amp:8, cutoff: 100, amp: 0.7 do
   with_fx :reverb, room:0.8, mix: 0.7 do
     live_loop :chordPlayer do
-      chordMaker
+      3.times do
+        chordMaker
+      end
+      if one_in(2)
+        sleep 128
+      end
     end
   end
 end
+
+
+#Subtle Chks
+#Subtle Chks
+#Subtle Chks
 
 
 with_fx :hpf, cutoff: 120 do
@@ -178,6 +198,11 @@ with_fx :hpf, cutoff: 120 do
     end
   end
 end
+
+#Mid-high Arpeggios
+#Mid-high Arpeggios
+#Mid-high Arpeggios
+
 
 define :arpMaker do
   #note chooser
@@ -232,6 +257,10 @@ with_fx :reverb, room: 0.1, mix: 0.7 do
   end
 end
 
+#Sample Scanner Percussion
+#Sample Scanner Percussion
+#Sample Scanner Percussion
+
 live_loop :perc_4, delay: 384 do
   #this is a 4th percussion element that plays rapid hi pitched samples that fade in and out
   ampLfo = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1].ring
@@ -262,7 +291,7 @@ end
 
 #this is one of the first times i've created genuinely original systems on my own in code. in the past, i've stolen techniques and modified or repurposed 'em but never really felt like i was figuring out something brand new on my own. 
 #well, this "come up with a new riff every 4 or 8 bars" system is all mine. i needed to do that because things get accepted as sounding "on purpose" when they're repeated. That holds true for improv jazz & guitar solos as much as algorhythmic music.
-# i'm sure there's a more elegant way of doing it instead of assigning values to variables from an array and then using those variables in a 2nd array, but this works just fine.
+#i'm sure there's a more elegant way of doing it instead of assigning values to variables from an array and then using those variables in a 2nd array, but this works just fine.
 #up next is taking all the synths and samples and sets of notes and sets of timings and turning those into global variables so i can switch them out and make different sounding patches without having to totally rewrite the systems.
 #up next is also a better system for randomizing the FX and the mix in a controlled fashion.
 #i gotta give thanks to William Fields, whose 24-hour FieldsOS project showed me that algorhytmic music could be a lot better than anything I'd heard or made, and could do a lot more shapeshifting than I thought it could. It just takes more robust systems and more "pre-production" and curation of the sound.
