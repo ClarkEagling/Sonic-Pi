@@ -260,8 +260,10 @@ live_loop :perc_4, delay: 384 do
   end
 end
 
-#this is one of the first times i've created genuinely original systems on my own in code. i've stolen techniques and modified or repurposed em but never really felt like i was figuring something brand new out on my own. well, this "come up with a new riff every 4 or 8 bars" is all mine. i'm sure there's a more elegant way of doing it instead of assigning values to variables from an array and then using those variables in a 2nd array, but this works just fine.
+#this is one of the first times i've created genuinely original systems on my own in code. in the past, i've stolen techniques and modified or repurposed 'em but never really felt like i was figuring out something brand new on my own. 
+#well, this "come up with a new riff every 4 or 8 bars" system is all mine. i needed to do that because things get accepted as sounding "on purpose" when they're repeated. That holds true for improv jazz & guitar solos as much as algorhythmic music.
+# i'm sure there's a more elegant way of doing it instead of assigning values to variables from an array and then using those variables in a 2nd array, but this works just fine.
 #up next is taking all the synths and samples and sets of notes and sets of timings and turning those into global variables so i can switch them out and make different sounding patches without having to totally rewrite the systems.
 #up next is also a better system for randomizing the FX and the mix in a controlled fashion.
-#i gotta give thanks to William Fields whose 24-hour FieldsOS project showed me that algorhytmic music could be a lot better, and could do a lot more shapeshifting than I thought it could. It just takes more robust systems and more "pre-production" and curation of the sound.
-#now I realize this isn't coming close to FieldsOS in terms of variety of sound/feel, but, to give myself credit, this is after a few hours spread out over 2 days and I'm approaching the challenge using very different tools. Maybe a control surface sending OSC messages is next?
+#i gotta give thanks to William Fields, whose 24-hour FieldsOS project showed me that algorhytmic music could be a lot better than anything I'd heard or made, and could do a lot more shapeshifting than I thought it could. It just takes more robust systems and more "pre-production" and curation of the sound.
+#trust, me, i realize this isn't coming close to FieldsOS in terms of variety of sound/feel, but, to give myself credit, this is after a few hours spread out over 2 days and I'm approaching the challenge using very different tools. Maybe a control surface sending OSC messages is next?
